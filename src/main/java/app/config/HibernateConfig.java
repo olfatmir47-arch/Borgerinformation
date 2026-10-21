@@ -3,6 +3,7 @@ package app.config;
 
 import app.utils.Utils;
 import jakarta.persistence.EntityManagerFactory;
+import org.hibernate.cfg.Configuration;
 
 import java.util.Properties;
 
@@ -21,6 +22,13 @@ public final class HibernateConfig {
             }
         }
         return emf;
+    }
+    private static EntityManagerFactory setupHibernateConfigurationForProduction() {
+        Properties props = new Properties();
+        props.put("hibernate.connection.url", System.getenv("JDBC_DATABASE_URL"));
+        props.put("hibernate.connection.username", System.getenv("JDBC_DATABASE_USERNAME"));
+        props.put("hibernate.connection.password", System.getenv("JDBC_DATABASE_PASSWORD"));
+        return new Configuration().addProperties(props).buildSessionFactory();
     }
 
     private static Properties buildProps() {
