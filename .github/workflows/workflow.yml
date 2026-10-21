@@ -1,9 +1,9 @@
 name: GITHUB ACTIONS WORKFLOW
 on:
   push:
-    branches: [ main, hibernate ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 jobs:
   build:
     runs-on: ubuntu-latest
