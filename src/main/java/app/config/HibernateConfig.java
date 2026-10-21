@@ -47,10 +47,20 @@ public final class HibernateConfig {
     }
 
     private static void setDeployedProperties(Properties props) {
-        String dbName = System.getenv("DB_NAME");
-        props.setProperty("hibernate.connection.url", System.getenv("CONNECTION_STR") + dbName);
-        props.setProperty("hibernate.connection.username", System.getenv("DB_USERNAME"));
-        props.setProperty("hibernate.connection.password", System.getenv("DB_PASSWORD"));
+        props.setProperty(
+                "hibernate.connection.url",
+                System.getenv("DATABASE_URL")
+        );
+
+        props.setProperty(
+                "hibernate.connection.username",
+                System.getenv("DATABASE_USER")
+        );
+
+        props.setProperty(
+                "hibernate.connection.password",
+                System.getenv("DATABASE_PASSWORD")
+        );
     }
 
     private static void setDevProperties(Properties props) {
