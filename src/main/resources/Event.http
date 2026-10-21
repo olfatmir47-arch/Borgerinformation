@@ -1,0 +1,152 @@
+###
+POST http://localhost:7070/adminPage
+Content-Type: application/
+
+{
+"name": "Sport"
+}
+
+###
+POST http://localhost:7070/adminPage
+Content-Type: application/
+
+{
+"name": "Musik"
+}
+
+###
+POST http://localhost:7070/events
+Content-Type: application/json
+
+{
+  "name": "Fodboldturnering",
+  "description": "Stor lokal turnering for alle aldre",
+  "startTime": "20-10-2026 14:00",
+  "endTime": "20-10-2026 18:00",
+  "categoryId": 1,
+  "address": {
+    "streetName": "Nørrebrogade",
+    "number": "45",
+    "floor": "1",
+    "postalCode": 2200,
+    "cityName": "København"
+  }
+}
+
+###
+POST http://localhost:7070/users
+Content-Type: application/json
+
+{
+  "firstName": "Shah",
+  "lastName": "Khan",
+  "birthDate": "21-12-1989",
+  "email": "SRK@gmail.com",
+  "password": "123456SRK",
+  "address": {
+    "streetName": "Stærevej",
+    "number": "46",
+    "floor": " 1 tv",
+    "postalCode": "2400",
+    "cityName": "København NV"
+  }
+}
+
+###
+POST http://localhost:7070/events
+Content-Type: application/json
+
+{
+  "name": "Basketball Cup",
+  "description": "Regional ungdomscup med hold fra hele Sjælland",
+  "startTime": "05-11-2026 10:00",
+  "endTime": "05-11-2026 16:00",
+  "categoryId": 1,
+  "address": {
+    "streetName": "Jagtvej",
+    "number": "69",
+    "floor": "0",
+    "postalCode": 2200,
+    "cityName": "København"
+  }
+}
+
+###
+POST http://localhost:7070/events
+Content-Type: application/json
+
+{
+  "name": "KøbenhavnKLøbeevent",
+  "description": "Åben løbekonkurrence for alle niveauer",
+  "startTime": "12-11-2026 09:30",
+  "endTime": "12-11-2026 12:00",
+  "categoryId": 1,
+  "address": {
+    "streetName": "Østerbrogade",
+    "number": "120",
+    "floor": "0",
+    "postalCode": 2100,
+    "cityName": "København"
+  }
+}
+
+###
+POST http://localhost:7070/events
+Content-Type: application/json
+
+{
+  "name": "Volleyball Strandturnering",
+  "description": "Mix-turnering på Amager Strandpark",
+  "startTime": "18-07-2026 13:00",
+  "endTime": "18-07-2026 18:00",
+  "categoryId": 1,
+  "address": {
+    "streetName": "Amager Strandvej",
+    "number": "15",
+    "floor": "0",
+    "postalCode": 2300,
+    "cityName": "København"
+  }
+}
+
+###
+POST http://localhost:7070/events
+Content-Type: application/json
+
+{
+  "name": "Jazz Aften",
+  "description": "Intim koncert med lokale jazzmusikere",
+  "startTime": "22-11-2026 19:00",
+  "endTime": "22-11-2026 22:00",
+  "categoryId": 2,
+  "address": {
+    "streetName": "Gothersgade",
+    "number": "45",
+    "floor": "0",
+    "postalCode": 1123,
+    "cityName": "København"
+  }
+}
+
+###
+POST http://localhost:7070/events
+Content-Type: application/json
+
+{
+  "name": "Rock Festival Mini",
+  "description": "En-dags rockfestival med upcoming bands",
+  "startTime": "03-12-2026 15:00",
+  "endTime": "03-12-2026 23:00",
+  "categoryId": 2,
+  "address": {
+    "streetName": "Enghavevej",
+    "number": "80",
+    "floor": "0",
+    "postalCode": 1674,
+    "cityName": "København"
+  }
+}
+
+###
+GET http://localhost:7070/events/category/1
+

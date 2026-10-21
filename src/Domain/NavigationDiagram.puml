@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+State Index
+State CreateUser
+State AdminPage
+State SeeAllPosts
+State SeeAllUsers
+State SeeAllEvents
+State SeeAllIncidents
+State SortPostsByDate
+State Map
+State CreatePost
+
+
+[*] -> Index
+Index -> CreateUser
+CreateUser -> Index
+
+Index --> AdminPage
+AdminPage --> SeeAllPosts
+AdminPage --> SeeAllUsers
+AdminPage --> SeeAllEvents
+AdminPage --> SeeAllIncidents
+AdminPage --> SortPostsByDate
+
+Index --> Map: LocationAccess
+Map --> CreatePost
+CreatePost --> Map
+
+Map --> SortByEvent
+Map --> SortByIncident
+Map --> SortByCategory
+
+
+
+@enduml

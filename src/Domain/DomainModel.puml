@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+object User
+object Event
+object Incident
+object Address
+object City
+object Category
+object Post
+object Date
+object Location
+object Map
+
+Address --> Event
+City --> Event
+Date --> Event
+Category --> Event
+
+Address --> Incident
+City --> Incident
+Date --> Incident
+Category --> Incident
+
+Event --> Post
+Incident --> Post
+
+User --> Location
+Location --> Map
+Post --> Map
+@enduml

@@ -1,0 +1,228 @@
+POST http://localhost:7070/users
+Content-Type: application/json
+
+{
+  "firstName": "Olfat",
+  "lastName": "Mirdadi",
+  "birthDate": "02-02-1995",
+  "email": "olfat@hotmail.com",
+  "password": "123456qw",
+  "address": {
+    "streetName": "Stærevej",
+    "number": "61",
+    "floor": "1. th",
+    "postalCode": "2400",
+    "cityName": "København NV"
+  }
+}
+
+###
+POST http://localhost:7070/users
+Content-Type: application/json
+
+{
+  "firstName": "Knud",
+  "lastName": "Knudsen",
+  "birthDate": "23-12-1956",
+  "email": "kk12@gmail.com",
+  "password": "knud234",
+  "address": {
+    "streetName": "Allegade",
+    "number": "10",
+    "floor": "",
+    "postalCode": "2000",
+    "cityName": "Frederiksberg"
+  }
+}
+
+###
+POST http://localhost:7070/users
+Content-Type: application/json
+
+{
+  "firstName": "KentKenny",
+  "lastName": "Knudsen",
+  "birthDate": "12-08-1956",
+  "email": "kkk@gmail.com",
+  "password": "knud234",
+  "address": {
+    "streetName": "Knudgade",
+    "number": "768",
+    "floor": "",
+    "postalCode": "2000",
+    "cityName": "Frederiksberg"
+  }
+}
+
+###
+POST http://localhost:7070/users
+Content-Type: application/json
+
+{
+  "firstName": "bent",
+  "lastName": "bendtsen",
+  "birthDate": "23-02-1985",
+  "email": "bbb@gmail.com",
+  "password": "bent456",
+  "address": {
+    "streetName": "Allegade 12",
+    "number": "10",
+    "floor": "",
+    "postalCode": "2400",
+    "cityName": "København NV"
+  }
+}
+###
+POST http://localhost:7070/users
+Content-Type: application/json
+
+{
+"firstName": "Søren",
+"lastName": "Sørensen",
+"birthDate": "24-12-2000",
+"email": "SS@gmail.com",
+"password": "123456ss",
+"address": {
+"streetName": "Houmanns Allé",
+"number": "3",
+"floor": "st tv",
+"postalCode": "2400",
+"cityName": "København NV"
+}
+}
+
+###
+POST http://localhost:7070/users
+Content-Type: application/json
+
+{
+  "firstName": "Søs",
+  "lastName": "Sørensen",
+  "birthDate": "24-12-2000",
+  "email": "SøS@gmail.com",
+  "password": "123456søs",
+  "address": {
+    "streetName": "Houmanns Allé",
+    "number": "3",
+    "floor": "st tv",
+    "postalCode": "2400",
+    "cityName": "København NV"
+  }
+}
+
+###
+POST http://localhost:7070/users
+Content-Type: application/json
+
+{
+  "firstName": "Sørme",
+  "lastName": "Sørensen",
+  "birthDate": "01-01-2001",
+  "email": "SørmeS@gmail.com",
+  "password": "123456ss",
+  "address": {
+    "streetName": "Houmanns Allé",
+    "number": "3",
+    "floor": "st tv",
+    "postalCode": "2400",
+    "cityName": "København NV"
+  }
+}
+
+###
+POST http://localhost:7070/users
+Content-Type: application/json
+
+{
+  "firstName": "Kat",
+  "lastName": "Musen",
+  "birthDate": "01-01-2001",
+  "email": "katmus@gmail.com",
+  "password": "123456ks",
+  "address": {
+    "streetName": "Rentemestervej",
+    "number": "36",
+    "floor": "3 tv",
+    "postalCode": "2400",
+    "cityName": "København NV"
+  }
+}
+
+###
+POST http://localhost:7070/users
+Content-Type: application/json
+
+{
+  "firstName": "Mus",
+  "lastName": "Katten",
+  "birthDate": "31-12-2000",
+  "email": "muskat@gmail.com",
+  "password": "123456mk",
+  "address": {
+    "streetName": "Rentemestervej",
+    "number": "36",
+    "floor": "3 tv",
+    "postalCode": "2400",
+    "cityName": "København NV"
+  }
+}
+
+###
+POST http://localhost:7070/users
+Content-Type: application/json
+
+{
+  "firstName": "kiks",
+  "lastName": "kegle",
+  "birthDate": "22-12-2002",
+  "email": "kik@gmail.com",
+  "password": "123456kik",
+  "address": {
+    "streetName": "Dortheavej",
+    "number": "12",
+    "floor": " 1 th",
+    "postalCode": "2400",
+    "cityName": "København NV"
+  }
+}
+
+###
+POST http://localhost:7070/users
+Content-Type: application/json
+
+{
+  "firstName": "Ur",
+  "lastName": "Spejl",
+  "birthDate": "21-12-1989",
+  "email": "US@gmail.com",
+  "password": "us1234",
+  "address": {
+    "streetName": "Bogtrykkervej",
+    "number": "26",
+    "floor": " 4 tv",
+    "postalCode": "2400",
+    "cityName": "København NV"
+  }
+}
+
+###
+PUT http://localhost:7070/users/2
+Content-Type: application/json
+
+{
+  "firstName": "Knud-Kent",
+  "lastName": "Knudsen",
+  "birthDate": "23-12-2000",
+  "email": "kk12@gmail.com",
+  "password": "knud234",
+  "address": {
+    "streetName": "Allegade",
+    "number": "10",
+    "floor": "",
+    "postalCode": "2000",
+    "cityName": "Frederiksberg"
+  }
+}
+
+###
+DELETE http://localhost:7070/users/1

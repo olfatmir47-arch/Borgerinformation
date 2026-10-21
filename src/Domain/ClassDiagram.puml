@@ -1,0 +1,63 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Class User{
+- int id
+- String firstName
+- String lastName
+- String email
+- String password
+- String address
+- LocalDate dateOfBirth
+}
+
+abstract Class Occurrence{
+- int id
+- String name
+- String description
+- LocalDate startTime
+- LocalDate endTime
+- String location
+
+}
+
+Class Event extends Occurrence{
+- EventCategory category
+}
+
+Class Incident extends Occurrence{
+- IncidentCategory category
+}
+
+Class UserDAO{
+- public User createUser()
+- public User updateUser(User user)
+- public User findById(ind id)
+
+}
+
+interface OccurrenceDAO<T extends Occurence>{
+- public void create(T object)
+- public T findById(int id)
+- public List<T> findAll()
+- public void update(T object)
+- public void delete( int id)
+
+}
+
+Class EventDAO implements OccurrenceDAO<Event>{
+- public Event create(Event event)
+- public Event findById(int id)
+- public List<Event> findAll()
+- public void update (Event event)
+- public void delete( int id)
+}
+
+Class IncidentDAO implements OccurrenceDAO<Incident>{
+- public Incident create(Incident incident)
+- public Incident findById(int id)
+- public List<Incident> findAll()
+- public void update (Incident incident)
+- public void delete( int id)
+}
+@enduml
