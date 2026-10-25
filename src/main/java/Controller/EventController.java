@@ -5,6 +5,7 @@ import DTO.Event.EventDTO;
 import Service.EventService;
 import entities.Event;
 import io.javalin.http.Context;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -29,5 +30,12 @@ private EventService eventService;
 
         List<EventDTO> response = events.stream().map(EventDTO::new).toList();
        ctx.json(response);
+    }
+
+    public void GetAllEvents(Context ctx) {
+        List<Event> events = eventService.findAll();
+
+        List<EventDTO> response = events.stream().map(EventDTO::new).toList();
+        ctx.json(response);
     }
 }

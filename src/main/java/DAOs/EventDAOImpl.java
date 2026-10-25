@@ -44,7 +44,7 @@ public class EventDAOImpl implements OccurrenceDAO<Event> {
                 TypedQuery<Event> query = em.createQuery("SELECT e FROM Event e", Event.class);
                 return query.getResultList();
             } catch (PersistenceException e) {
-                throw new ApiException(500, "Get studies failed: " + e.getMessage());
+                throw new ApiException(500, "Get events failed: " + e.getMessage());
             }
         }
     }

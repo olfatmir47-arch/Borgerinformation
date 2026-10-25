@@ -99,4 +99,5 @@ public class EventService {
     public List<Event> getAllEventsByCategory(int categoryId) {
         return eventDAO.findByCategory(categoryId);
     }
+
 }

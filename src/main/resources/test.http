@@ -42,3 +42,58 @@ Content-Type: application/json
     "cityName": "København NV"
   }
 }
+
+###
+POST https://borgerhub.dk/users
+Content-Type: application/json
+
+{
+  "firstName": "Mikkel",
+  "lastName": "Hansen",
+  "birthDate": "15-06-1998",
+  "email": "mikkel.hansen@example.com",
+  "password": "Test123456!",
+  "address": {
+    "streetName": "Nørrebrogade",
+    "number": "45",
+    "floor": "2 th",
+    "postalCode": "2200",
+    "cityName": "København N"
+  }
+}
+
+###
+POST http://borgerhub.dk/adminPage
+Content-Type: application/
+
+{
+"name": "Musik"
+}
+
+###
+POST http://borgerhub.dk/adminPage
+Content-Type: application/
+
+{
+"name": "Sport"
+}
+
+
+###
+POST http://borgerhub.dk/events
+Content-Type: application/json
+
+{
+  "name": "Fodboldturnering",
+  "description": "Stor lokal turnering for alle aldre",
+  "startTime": "20-10-2026 14:00",
+  "endTime": "20-10-2026 18:00",
+  "categoryId": 1,
+  "address": {
+    "streetName": "Nørrebrogade",
+    "number": "45",
+    "floor": "1",
+    "postalCode": 2200,
+    "cityName": "København"
+  }
+}

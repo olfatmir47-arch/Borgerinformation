@@ -58,6 +58,7 @@ public class Main {
         app.post("/adminPage", categoryController::createCategory);
 
         app.post("/events", eventController::createEvent);
+        app.get("/events", eventController::GetAllEvents);
         app.get("/events/category/{id}", eventController::getAllEventsByCategory);
 
 
