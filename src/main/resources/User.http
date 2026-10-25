@@ -226,3 +226,23 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:7070/users/1
+
+
+###
+POST https://borgerhub.dk/users
+Content-Type: application/json
+
+{
+  "firstName": "kiks",
+  "lastName": "kegle",
+  "birthDate": "22-12-2002",
+  "email": "kik@gmail.com",
+  "password": "123456kik",
+  "address": {
+    "streetName": "Dortheavej",
+    "number": "12",
+    "floor": " 1 th",
+    "postalCode": "2400",
+    "cityName": "København NV"
+  }
+}

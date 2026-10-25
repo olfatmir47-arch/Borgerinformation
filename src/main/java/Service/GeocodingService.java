@@ -1,5 +1,6 @@
 package Service;
 
+
 import DTO.Address.AddressDTO;
 import DTO.Address.CoordinatesDTO;
 import app.config.APIReader;
@@ -12,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 
 public class GeocodingService {
 
-   private String apiKey = System.getenv("APIKey");
+   private String apiKey = System.getenv("HERE_API_KEY");
    private APIReader apiReader = new APIReader();
    private ObjectMapper mapper = new ObjectMapper();
 
@@ -20,7 +21,7 @@ public class GeocodingService {
        try{
 
            String query = streetName + " " + number + ", " + postalCode + " " + cityName;
-           String url = "https://geocode.search.hereapi.com/v1/geocode?q=" + URLEncoder.encode(query, StandardCharsets.UTF_8) + "&apikey=" + apiKey;
+           String url = "https://geocode.search.hereapi.com/v1/geocode?q=" + URLEncoder.encode(query, StandardCharsets.UTF_8) + "&apiKey=" + apiKey;
            String json = apiReader.readAPI(url);
 
            JsonNode root = mapper.readTree(json);
@@ -39,7 +40,7 @@ public class GeocodingService {
 
    public AddressDTO reverseGeocode(double lat, double lng){
        try {
-           String url = "https://revgeocode.search.hereapi.com/v1/revgeocode?at=" + lat + "," + lng + "&apikey=" + apiKey;
+           String url = "https://revgeocode.search.hereapi.com/v1/revgeocode?at=" + lat + "," + lng + "&apiKey=" + apiKey;
            String json = apiReader.readAPI(url);
 
 

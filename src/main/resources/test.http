@@ -1,0 +1,44 @@
+### Test Borgerinformation på serveren
+GET http://139.59.135.175:7070/
+
+###
+POST http://139.59.135.175:7070/users
+Content-Type: application/json
+
+{
+  "firstName": "Ur",
+  "lastName": "Spejl",
+  "birthDate": "21-12-1989",
+  "email": "US@gmail.com",
+  "password": "us1234",
+  "address": {
+    "streetName": "Bogtrykkervej",
+    "number": "26",
+    "floor": " 4 tv",
+    "postalCode": "2400",
+    "cityName": "København NV"
+  }
+}
+
+### Hent brugere fra den deployede server
+GET http://139.59.135.175:7070/users
+Accept: application/json
+
+###
+POST https://borgerhub.dk/users
+Content-Type: application/json
+
+{
+  "firstName": "kiks",
+  "lastName": "kegle",
+  "birthDate": "22-12-2002",
+  "email": "kik@gmail.com",
+  "password": "123456kik",
+  "address": {
+    "streetName": "Dortheavej",
+    "number": "12",
+    "floor": " 1 th",
+    "postalCode": "2400",
+    "cityName": "København NV"
+  }
+}

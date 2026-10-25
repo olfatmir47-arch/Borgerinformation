@@ -1,13 +1,13 @@
 package Service;
 
 import DAOs.CategoryDAO;
-import DTO.Category.CategoryDTO;
+
 import DTO.Category.CreateCategoryDTO;
 import entities.Category;
-import entities.User;
+
 
 public class CategoryService {
-    private CategoryDAO categoryDAO;
+    private final CategoryDAO categoryDAO;
 
     public CategoryService(CategoryDAO categoryDAO) {
         this.categoryDAO = categoryDAO;

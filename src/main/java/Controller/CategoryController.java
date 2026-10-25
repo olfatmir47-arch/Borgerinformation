@@ -18,9 +18,7 @@ public class CategoryController {
         CreateCategoryDTO dto = ctx.bodyAsClass(CreateCategoryDTO.class);
         Category category = categoryService.createCategory(dto);
 
-        CategoryDTO response = new CategoryDTO();
-        response.setId(category.getId());
-        response.setName(category.getName());
+        CategoryDTO response = new CategoryDTO(category);
 
         ctx.json(response);
     }

@@ -25,8 +25,8 @@ public class UserDAOImpl implements UserDAO, ISecurityDAO {
         em.getTransaction().commit();
         em.close();
         return user;
-
     }
+
     @Override
     public User findById(int id) {
         EntityManager em = emf.createEntityManager();
