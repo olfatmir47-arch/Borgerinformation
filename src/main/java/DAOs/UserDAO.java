@@ -1,5 +1,6 @@
 package DAOs;
 
+import DTO.Security.JwtUserDTO;
 import entities.User;
 
 import java.util.List;

@@ -38,4 +38,12 @@ private EventService eventService;
         List<EventDTO> response = events.stream().map(EventDTO::new).toList();
         ctx.json(response);
     }
+
+    public void getEventsByPostalCode( Context ctx) {
+        String postalCode = (ctx.pathParam("postalCode"));
+        List<Event> events = eventService.getAllEventsByPostalCode(postalCode);
+
+        List<EventDTO> response = events.stream().map(EventDTO::new).toList();
+        ctx.json(response);
+    }
 }

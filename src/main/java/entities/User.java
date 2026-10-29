@@ -7,12 +7,12 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
 
 @Entity
@@ -25,7 +25,7 @@ public class User implements ISecurityUser {
         this.email = email;
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
         this.dateOfBirth = dateOfBirth;
-        //this.role = role;
+        this.role = role;
         this.address = address;
     }
 
@@ -54,14 +54,13 @@ public class User implements ISecurityUser {
     private String password;
     @Column
     private LocalDate dateOfBirth;
-   // @ManyToMany
-    //@JoinColumn(name = "role_id")
-    private String role;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
-
 
 
     public void setPassword(String password) {
@@ -70,7 +69,7 @@ public class User implements ISecurityUser {
 
     @Override
     public Set<String> getRolesAsStrings() {
-        return Set.of();
+        return Set.of(role.name());
     }
 
     @Override

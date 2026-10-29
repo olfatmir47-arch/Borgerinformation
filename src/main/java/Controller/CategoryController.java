@@ -22,4 +22,10 @@ public class CategoryController {
 
         ctx.json(response);
     }
+
+    public void deleteCategory(Context ctx) {
+        int id = Integer.parseInt(ctx.pathParam("id"));
+        categoryService.delete(id);
+        ctx.status(204);
+    }
 }

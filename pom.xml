@@ -20,9 +20,22 @@
         <logback-classic>1.5.27</logback-classic>
         <org.slf4j>2.0.17</org.slf4j>
         <hamcrest>3.0</hamcrest>
+        <token.security.version>1.0.4</token.security.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
     <dependencies>
+        <dependency>
+            <groupId>com.github.Hartmannsolution</groupId>
+            <artifactId>TokenSecurity</artifactId>
+            <version>${token.security.version}</version>
+        </dependency>
 
         <!--  DB    -->
         <dependency>
@@ -138,6 +151,7 @@
             <artifactId>logback-classic</artifactId>
             <version>${logback-classic}</version>
         </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -145,12 +159,7 @@
         </dependency>
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
+
 
     <build>
         <finalName>app</finalName>

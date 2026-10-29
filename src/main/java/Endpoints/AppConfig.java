@@ -1,9 +1,6 @@
 package Endpoints;
 
-import Controller.CategoryController;
-import Controller.EventController;
-import Controller.GeocodingController;
-import Controller.UserController;
+import Controller.*;
 import DAOs.*;
 import Service.CategoryService;
 import Service.EventService;
@@ -34,5 +31,14 @@ public class AppConfig {
         UserController userController = new UserController(userService);
         CategoryController categoryController = new CategoryController(categoryService);
         EventController eventController = new EventController(eventService);
+        SecurityController securityController = new SecurityController();
+
+        app.beforeMatched(securityController::authenticate);
+        app.beforeMatched(securityController::authorize);
+
+        UserRoutes.register(app, userController);
+        CategoryRoutes.register(app, categoryController);
+        EventRoutes.register(app, eventController);
+        SecurityRoutes.register(app, securityController);
     }
 }

@@ -18,5 +18,6 @@ public class Main {
 
         AppConfig.configure(app);
 
+
     }
 }

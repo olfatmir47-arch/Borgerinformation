@@ -1,5 +1,6 @@
 package DAOs;
 
+import DTO.Security.JwtUserDTO;
 import entities.Role;
 import entities.User;
 import io.javalin.validation.ValidationException;
@@ -9,7 +10,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.List;
 
-public class UserDAOImpl implements UserDAO, ISecurityDAO {
+public class UserDAOImpl implements UserDAO {
 
     private EntityManagerFactory emf;
 
@@ -86,27 +87,5 @@ public class UserDAOImpl implements UserDAO, ISecurityDAO {
                 .findFirst()
                 .orElse(null);
 
-    }
-
-    @Override
-    public User getVerifiedUser(String email, String password) throws ValidationException {
-        User user = findByEmail(email);
-        if (user == null) {
-            throw new IllegalArgumentException("User not found");
-        }
-        if (!BCrypt.checkpw(password, user.getPassword())) {
-            throw new IllegalArgumentException("wrong password");
-        }
-        return user;
-    }
-
-    @Override
-    public Role createRole(String role) {
-        return null;
-    }
-
-    @Override
-    public User addUserRole(String username, String role) {
-        return null;
     }
 }

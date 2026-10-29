@@ -1,3 +1,9 @@
+###
+GET http://localhost:7070/users
+Content-Type: application/json
+Authorization: Bearer {{$auth.token("eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJCb3JnZXJJbmZvcm1hdGlvbiIsInN1YiI6IlPDuHJtZVNAZ21haWwuY29tIiwiZXhwIjoxNzkzMjMyMzk2LCJyb2xlcyI6IlVTRVIiLCJ1c2VybmFtZSI6IlPDuHJtZVNAZ21haWwuY29tIn0.2woYOx9YAf5Ve_KwjLp6U0KxRBrnNIZD2gq7YbLKtXI")}}
+
+###
 POST http://localhost:7070/users
 Content-Type: application/json
 
@@ -52,6 +58,15 @@ Content-Type: application/json
     "postalCode": "2000",
     "cityName": "Frederiksberg"
   }
+}
+
+###
+POST http://localhost:7070/auth/login
+Content-Type: application/json
+
+{
+"email": "kkk@gmail.com",
+"password": "knud234"
 }
 
 ###
@@ -128,6 +143,26 @@ Content-Type: application/json
     "cityName": "København NV"
   }
 }
+
+###
+POST http://localhost:7070/auth/login
+Content-Type: application/json
+
+{
+  "email": "SørmeS@gmail.com",
+  "password": "123456ss"
+}
+
+###
+GET http://localhost:7070/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJCb3JnZXJJbmZvcm1hdGlvbiIsInN1YiI6IlPDuHJtZVNAZ21haWwuY29tIiwiZXhwIjoxNzkzMjM1MDU5LCJyb2xlcyI6IlVTRVIiLCJ1c2VybmFtZSI6IlPDuHJtZVNAZ21haWwuY29tIn0.4D2txcmB7HkS0RhGcqTbGAHKCRRwFgvFYMGFrhCZT1g
+
+###
+GET http://localhost:7070/users
+Content-Type: application/json
+Authorization:
+
 
 ###
 POST http://localhost:7070/users
@@ -225,7 +260,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:7070/users/1
+DELETE http://localhost:7070/users/7
 
 
 ###

@@ -41,7 +41,7 @@ public Category create(Category category) {
     public void delete(int id) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Category category = findById(id);
+        Category category = em.find(Category.class, id);
         if (category != null)
         {
             em.remove(category);

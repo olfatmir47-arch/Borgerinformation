@@ -4,11 +4,13 @@ import DAOs.AddressDAO;
 import DAOs.CityDAO;
 import DAOs.UserDAOImpl;
 import DTO.Address.CoordinatesDTO;
+import DTO.Security.JwtUserDTO;
 import DTO.User.CreateUserDTO;
 import DTO.User.UserDTO;
 import app.exceptions.ApiException;
 import entities.Address;
 import entities.City;
+import entities.Role;
 import entities.User;
 
 import java.util.List;
@@ -81,6 +83,8 @@ public class UserService {
         user.setEmail(dto.getEmail());
         user.setPassword(dto.getPassword());
         user.setAddress(address);
+        user.setRole(Role.USER);
+
 
         User result = userDAO.createUser(user);
 

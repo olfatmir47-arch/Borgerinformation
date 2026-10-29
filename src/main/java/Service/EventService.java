@@ -100,4 +100,7 @@ public class EventService {
         return eventDAO.findByCategory(categoryId);
     }
 
+    public List<Event> getAllEventsByPostalCode(String postalCode) {
+        return eventDAO.findByPostalCode(postalCode);
+    }
 }
