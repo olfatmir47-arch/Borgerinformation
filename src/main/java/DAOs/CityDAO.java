@@ -11,7 +11,11 @@ import java.util.List;
 
 public class CityDAO {
 
-    private EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
+    private EntityManagerFactory emf;
+
+    public CityDAO(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
 
     public City findById(String id) {
         EntityManager em = emf.createEntityManager();

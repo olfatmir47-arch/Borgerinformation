@@ -13,5 +13,9 @@ public class UserRoutes {
         app.get("/users/{id}", userController::getUserById, Role.ADMIN);
         app.put("/users/{id}", userController::updateUser, Role.USER, Role.ADMIN);
         app.delete("/users/{id}", userController::deleteUser, Role.USER, Role.ADMIN);
+        app.get("/users/test", ctx -> {
+            System.out.println("User test route called");
+            ctx.result("User route works");
+        });
     }
 }

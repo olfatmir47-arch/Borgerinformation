@@ -7,10 +7,14 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
 public class CategoryDAO {
-private EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
+private EntityManagerFactory emf;
+
+    public CategoryDAO(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
 
 
-public Category create(Category category) {
+    public Category create(Category category) {
     EntityManager em = emf.createEntityManager();
     em.getTransaction().begin();
     em.persist(category);

@@ -28,11 +28,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class UserDAOImplTest {
     private final EntityManagerFactory emf = HibernateTestConfig.getEntityManagerFactory();
 
-    private UserService userService;
+
     private UserDAOImpl userDAO;
-    private CityDAO cityDAO;
-    private AddressDAO addressDAO;
-    private GeocodingService geocodingService;
     private Map<String, User> seeded;
 
 

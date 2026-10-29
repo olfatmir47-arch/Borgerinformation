@@ -4,10 +4,12 @@ import DTO.Address.CreateAddressDTO;
 import DTO.User.CreateUserDTO;
 import entities.Address;
 import entities.City;
+import entities.Role;
 import entities.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceException;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -66,6 +68,7 @@ public final class UserTestPopulator {
             user1.setEmail("lars.larsen98@example.com");
             user1.setPassword("123456LL");
             user1.setAddress(address1);
+            user1.setRole(Role.USER);
 
             User user2 = new User();
             user2.setFirstName("Sara");
@@ -76,6 +79,7 @@ public final class UserTestPopulator {
             user2.setEmail("sara.hansen92@example.com");
             user2.setPassword("saraPass92");
             user2.setAddress(address2);
+            user2.setRole(Role.USER);
 
             User user3 = new User();
             user3.setFirstName("Mikkel");
@@ -86,6 +90,16 @@ public final class UserTestPopulator {
             user3.setEmail("mikkel.poulsen85@example.com");
             user3.setPassword("mikkel1985");
             user3.setAddress(address3);
+            user3.setRole(Role.USER);
+
+            User admin = new User();
+            admin.setFirstName("Admin");
+            admin.setLastName("Test");
+            admin.setDateOfBirth(LocalDate.parse("01-01-1990", formatter));
+            admin.setEmail("admin@example.com");
+            admin.setPassword("adminPass123");
+            admin.setAddress(address1);
+            admin.setRole(Role.ADMIN);
 
             try {
                 em.createNativeQuery("TRUNCATE TABLE users RESTART IDENTITY CASCADE").executeUpdate();
@@ -100,6 +114,7 @@ public final class UserTestPopulator {
                 em.persist(user1);
                 em.persist(user2);
                 em.persist(user3);
+                em.persist(admin);
 
                 em.flush();
             } catch (PersistenceException e) {
@@ -112,6 +127,7 @@ public final class UserTestPopulator {
             seeded.put("user1", user1);
             seeded.put("user2", user2);
             seeded.put("user3", user3);
+            seeded.put("admin", admin);
             return seeded;
         }
     }

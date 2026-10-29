@@ -17,7 +17,11 @@ import java.util.Set;
 
 public class EventDAOImpl implements OccurrenceDAO<Event> {
 
-    private EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
+    private EntityManagerFactory emf;
+
+    public EventDAOImpl(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
 
     @Override
     public Event create(Event event) {

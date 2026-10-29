@@ -1,6 +1,7 @@
 
 import Endpoints.AppConfig;
 
+import app.config.HibernateConfig;
 import io.javalin.Javalin;
 import io.javalin.json.JavalinJackson;
 
@@ -16,7 +17,7 @@ public class Main {
             e.printStackTrace();
         });
 
-        AppConfig.configure(app);
+        AppConfig.configure(app, HibernateConfig.getEntityManagerFactory());
 
 
     }

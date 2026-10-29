@@ -9,10 +9,12 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class SecurityDAO implements ISecurityDAO {
 
+    private EntityManagerFactory emf;
     private UserDAO userDAO;
 
     public SecurityDAO(EntityManagerFactory emf) {
         this.userDAO = new UserDAOImpl(emf);
+
     }
 
     @Override

@@ -13,7 +13,12 @@ import java.util.List;
 
 public class AddressDAO {
 
-    private EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
+    private EntityManagerFactory emf;
+
+    public AddressDAO(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
+
 
     public Address createAddress(Address address) {
         EntityManager em = emf.createEntityManager();

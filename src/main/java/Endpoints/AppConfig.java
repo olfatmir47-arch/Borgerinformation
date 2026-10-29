@@ -12,16 +12,16 @@ import jakarta.persistence.EntityManagerFactory;
 
 public class AppConfig {
 
-    public static void configure(Javalin app) {
-        EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
+    public static void configure(Javalin app,EntityManagerFactory emf) {
+
 
         GeocodingController geocodingController = new GeocodingController();
 
         UserDAOImpl userDAO = new UserDAOImpl(emf);
-        CityDAO cityDAO = new CityDAO();
-        AddressDAO addressDAO = new AddressDAO();
-        CategoryDAO categoryDAO = new CategoryDAO();
-        EventDAOImpl eventDAO = new EventDAOImpl();
+        CityDAO cityDAO = new CityDAO(emf);
+        AddressDAO addressDAO = new AddressDAO(emf);
+        CategoryDAO categoryDAO = new CategoryDAO(emf);
+        EventDAOImpl eventDAO = new EventDAOImpl(emf);
 
         GeocodingService geocodingService = new GeocodingService();
         EventService eventService = new EventService(eventDAO, cityDAO, addressDAO, geocodingService, categoryDAO);
@@ -31,7 +31,7 @@ public class AppConfig {
         UserController userController = new UserController(userService);
         CategoryController categoryController = new CategoryController(categoryService);
         EventController eventController = new EventController(eventService);
-        SecurityController securityController = new SecurityController();
+        SecurityController securityController = new SecurityController(emf);
 
         app.beforeMatched(securityController::authenticate);
         app.beforeMatched(securityController::authorize);

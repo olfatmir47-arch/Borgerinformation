@@ -12,9 +12,12 @@ import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
 
-    private EntityManagerFactory emf;
+    private final EntityManagerFactory emf;
 
     public UserDAOImpl(EntityManagerFactory emf) {
+        if (emf == null) {
+            new Exception("UserDAOImpl oprettet med null emf").printStackTrace();
+        }
         this.emf = emf;
     }
 

@@ -17,7 +17,6 @@ public class UserController {
     }
 
     public void getUserById(Context ctx){
-
         int id = Integer.parseInt(ctx.pathParam("id"));
         User user = userService.findUserById(id);
         UserDTO userDTO = new UserDTO();

@@ -14,7 +14,11 @@ import java.util.List;
 import java.util.Set;
 
 public class IncidentDAOImpl implements OccurrenceDAO<Incident> {
-    private EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
+    private EntityManagerFactory emf;
+
+    public IncidentDAOImpl(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
 
     @Override
     public Incident create(Incident incident) {

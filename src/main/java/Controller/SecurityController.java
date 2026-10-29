@@ -2,38 +2,34 @@ package Controller;
 
 import DAOs.ISecurityDAO;
 import DAOs.SecurityDAO;
-import DAOs.UserDAOImpl;
-import DTO.Security.JwtUserDTO;
+
 import DTO.Security.TokenDTO;
-import DTO.User.CreateUserDTO;
+
 import DTO.User.VerifyUserDTO;
-import app.config.HibernateConfig;
+
 import app.exceptions.ApiException;
 import app.utils.Utils;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import dk.bugelhartmann.ITokenSecurity;
 import dk.bugelhartmann.TokenSecurity;
 import dk.bugelhartmann.TokenVerificationException;
 import dk.bugelhartmann.UserDTO;
 import entities.User;
 import io.javalin.http.*;
-import io.javalin.security.RouteRole;
-import io.javalin.validation.ValidationException;
 
-import jakarta.persistence.EntityNotFoundException;
-
-import javax.swing.text.html.parser.Entity;
+import jakarta.persistence.EntityManagerFactory;
 import java.text.ParseException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class SecurityController implements ISecurityController {
-    private ISecurityDAO securityDAO = new SecurityDAO(HibernateConfig.getEntityManagerFactory());
-    private ObjectMapper objectMapper = new ObjectMapper();
+
+    private ISecurityDAO securityDAO;
     private ITokenSecurity tokenSecurity = new TokenSecurity();
 
 
+    public SecurityController(EntityManagerFactory emf) {
+        this.securityDAO = new SecurityDAO(emf);
+    }
 
     @Override
     public void login(Context ctx) {
@@ -53,6 +49,7 @@ public class SecurityController implements ISecurityController {
 
             ctx.status(200).json(new TokenDTO(token, verifiedUser.getEmail()));
         } catch (Exception e) {
+            e.printStackTrace();
             throw new ApiException(401, "Invalid email or password");
         }
     }
@@ -82,7 +79,6 @@ public class SecurityController implements ISecurityController {
 
     @Override
     public void authorize(Context ctx) {
-
         Set<String> allowedRoles = ctx.routeRoles()
                 .stream()
                 .map(role -> role.toString().toUpperCase())
