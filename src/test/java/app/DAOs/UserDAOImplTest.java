@@ -39,11 +39,6 @@ class UserDAOImplTest {
         userDAO = new UserDAOImpl(emf);
     }
 
-    @AfterAll
-    void shutdown() {
-        emf.close();
-    }
-
     @Test
     void createUser() {
         City city = new City("2000", "Frederiksberg");

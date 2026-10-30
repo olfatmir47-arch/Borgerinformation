@@ -63,7 +63,7 @@ public class UserControllerTest {
 
     @AfterAll
     static void shutdown() {
-        emf.close();
+        app.stop();
     }
 
     @Test
