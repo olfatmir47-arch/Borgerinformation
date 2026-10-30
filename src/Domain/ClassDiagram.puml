@@ -1,63 +1,617 @@
 @startuml
-'https://plantuml.com/sequence-diagram
 
-Class User{
-- int id
-- String firstName
-- String lastName
-- String email
-- String password
-- String address
-- LocalDate dateOfBirth
+
+
+skinparam linetype ortho
+
+class Address {
+  + Address():
+  + Address(String, String, String, double, double, City):
+  - streetName: String
+  - number: String
+  - id: Integer
+  - floor: String
+  - city: City
+  - lng: double
+  - lat: double
+  + getNumber(): String
+  + getId(): Integer
+  + getStreetName(): String
+  + setLat(double): void
+  + getFloor(): String
+  + getLat(): double
+  + setFloor(String): void
+  + setNumber(String): void
+  + setCity(City): void
+  + getLng(): double
+  + toString(): String
+  + setLng(double): void
+  + getCity(): City
+  + setId(Integer): void
+  + setStreetName(String): void
+}
+class AddressDAO {
+  + AddressDAO(EntityManagerFactory):
+  - emf: EntityManagerFactory
+  + createAddress(Address): Address
+  + findAddress(String, String, String, City): Address
+}
+class AddressDTO {
+  + AddressDTO(String, String, String, String):
+  + AddressDTO():
+  + AddressDTO(Address):
+  - postalCode: String
+  - city: String
+  - number: String
+  - streetName: String
+  + getStreetName(): String
+  + getNumber(): String
+  + getPostalCode(): String
+  + getCity(): String
+  + setStreetName(String): void
+  + setNumber(String): void
+  + setPostalCode(String): void
+  + setCity(String): void
 }
 
-abstract Class Occurrence{
-- int id
-- String name
-- String description
-- LocalDate startTime
-- LocalDate endTime
-- String location
-
+class Category {
+  + Category():
+  - name: String
+  - id: Integer
+  + getId(): Integer
+  + getName(): String
+  + setId(Integer): void
+  + setName(String): void
+  + toString(): String
+}
+class CategoryController {
+  + CategoryController(CategoryService):
+  - categoryService: CategoryService
+  + createCategory(Context): void
+  + deleteCategory(Context): void
+}
+class CategoryDAO {
+  + CategoryDAO(EntityManagerFactory):
+  - emf: EntityManagerFactory
+  + findById(int): Category
+  + findByName(String): Category
+  + delete(int): void
+  + create(Category): Category
+}
+class CategoryDTO {
+  + CategoryDTO(int, String):
+  + CategoryDTO():
+  + CategoryDTO(Category):
+  - id: int
+  - name: String
+  + getId(): int
+  + getName(): String
+  + setId(int): void
+  + setName(String): void
+}
+class CategoryRoutes {
+  + CategoryRoutes():
+  + register(Javalin, CategoryController): void
+}
+class CategoryService {
+  + CategoryService(CategoryDAO):
+  - categoryDAO: CategoryDAO
+  + delete(int): void
+  + createCategory(CreateCategoryDTO): Category
+}
+class City {
+  + City(Integer, String, String):
+  + City():
+  + City(String, String):
+  - id: Integer
+  - postalCode: String
+  - cityName: String
+  + getId(): Integer
+  + getPostalCode(): String
+  + getCityName(): String
+  + setId(Integer): void
+  + setPostalCode(String): void
+  + setCityName(String): void
+  + toString(): String
+}
+class CityDAO {
+  + CityDAO(EntityManagerFactory):
+  - emf: EntityManagerFactory
+  + findByPostalCode(String): City
+  + findById(String): City
+  + createCity(City): City
+}
+class CoordinatesDTO {
+  + CoordinatesDTO(double, double):
+  + CoordinatesDTO():
+  + lng: double
+  + lat: double
+  + getLat(): double
+  + getLng(): double
+  + setLat(double): void
+  + setLng(double): void
+}
+class CreateAddressDTO {
+  + CreateAddressDTO():
+  + CreateAddressDTO(String, String, String, String, String):
+  - streetName: String
+  - postalCode: String
+  - cityName: String
+  - number: String
+  - floor: String
+  + getStreetName(): String
+  + getNumber(): String
+  + getFloor(): String
+  + getPostalCode(): String
+  + getCityName(): String
+  + setStreetName(String): void
+  + setCityName(String): void
+  + setNumber(String): void
+  + setFloor(String): void
+  + setPostalCode(String): void
+  + validate(): void
+}
+class CreateCategoryDTO {
+  + CreateCategoryDTO(String):
+  + CreateCategoryDTO():
+  - name: String
+  + getName(): String
+  + setName(String): void
+}
+class CreateEventDTO {
+  + CreateEventDTO(String, String, LocalDateTime, LocalDateTime, CreateAddressDTO, int):
+  + CreateEventDTO():
+  - address: CreateAddressDTO
+  - startTime: LocalDateTime
+  - categoryId: int
+  - description: String
+  - endTime: LocalDateTime
+  - name: String
+  + getName(): String
+  + getDescription(): String
+  + getStartTime(): LocalDateTime
+  + setAddress(CreateAddressDTO): void
+  + getEndTime(): LocalDateTime
+  + getAddress(): CreateAddressDTO
+  + getCategoryId(): int
+  + setEndTime(LocalDateTime): void
+  + setCategoryId(int): void
+  + setName(String): void
+  + setDescription(String): void
+  + setStartTime(LocalDateTime): void
+  + validate(): void
+}
+class CreateUserDTO {
+  + CreateUserDTO(String, String, LocalDate, String, String, CreateAddressDTO):
+  + CreateUserDTO():
+  - birthDate: LocalDate
+  - email: String
+  - password: String
+  - address: CreateAddressDTO
+  - lastName: String
+  - firstName: String
+  + validate(): void
+  + getFirstName(): String
+  + getLastName(): String
+  + getBirthDate(): LocalDate
+  + getEmail(): String
+  + getPassword(): String
+  + getAddress(): CreateAddressDTO
+}
+class EntityRegistry {
+  - EntityRegistry():
+  ~ registerEntities(Configuration): void
+}
+class Event {
+  + Event():
+  - category: Category
+  + getCategory(): Category
+  + setCategory(Category): void
+  + toString(): String
+}
+class EventController {
+  + EventController(EventService):
+  - eventService: EventService
+  + createEvent(Context): void
+  + GetAllEvents(Context): void
+  + getAllEventsByCategory(Context): void
+  + getEventsByPostalCode(Context): void
+}
+class EventDAOImpl {
+  + EventDAOImpl(EntityManagerFactory):
+  - emf: EntityManagerFactory
+  + delete(int): void
+  + findByCity(String): Set<Event>
+  + findAll(): List<Event>
+  + findByDate(LocalDate, LocalDate): Set<Event>
+  + findByCategory(int): List<Event>
+  + create(Event): Event
+  + findById(int): Event
+  + findByPostalCode(String): List<Event>
+  + update(Event): Event
+  + findByType(Event): Set<Event>
+}
+class EventDTO {
+  + EventDTO():
+  + EventDTO(int, String, String, LocalDateTime, LocalDateTime, AddressDTO, CategoryDTO):
+  + EventDTO(Event):
+  - endTime: LocalDateTime
+  - name: String
+  - description: String
+  - address: AddressDTO
+  - category: CategoryDTO
+  - id: int
+  - startTime: LocalDateTime
+  + getStartTime(): LocalDateTime
+  + setName(String): void
+  + setDescription(String): void
+  + getId(): int
+  + setEndTime(LocalDateTime): void
+  + getName(): String
+  + setStartTime(LocalDateTime): void
+  + getDescription(): String
+  + getEndTime(): LocalDateTime
+  + getAddress(): AddressDTO
+  + getCategory(): CategoryDTO
+  + setCategory(CategoryDTO): void
+  + setId(int): void
+  + setAddress(AddressDTO): void
+}
+class EventRoutes {
+  + EventRoutes():
+  + register(Javalin, EventController): void
+}
+class EventService {
+  + EventService(EventDAOImpl, CityDAO, AddressDAO, GeocodingService, CategoryDAO):
+  - addressDAO: AddressDAO
+  - geocodingService: GeocodingService
+  - cityDAO: CityDAO
+  - categoryDAO: CategoryDAO
+  - eventDAO: EventDAOImpl
+  + findAll(): List<Event>
+  + updateUser(Event): Event
+  + getAllEventsByCategory(int): List<Event>
+  + findUserById(int): Event
+  + createEvent(CreateEventDTO): Event
+  + delete(int): Event
+  + getAllEventsByPostalCode(String): List<Event>
+}
+class GeocodingController {
+  + GeocodingController():
+  - geocodingService: GeocodingService
+  + reverseGeocode(double, double): AddressDTO
+  + geocode(String, String, String, String): CoordinatesDTO
+}
+class GeocodingService {
+  + GeocodingService():
+  - apiKey: String
+  - apiReader: APIReader
+  - mapper: ObjectMapper
+  + geocode(String, String, String, String): CoordinatesDTO
+  + reverseGeocode(double, double): AddressDTO
 }
 
-Class Event extends Occurrence{
-- EventCategory category
+interface ISecurityController << interface >> {
+  + login(Context): void
+  + authenticate(Context): void
+  + authorize(Context): void
+}
+interface ISecurityDAO << interface >> {
+  + getVerifiedUser(String, String): User
+}
+interface ISecurityUser << interface >> {
+  + getRolesAsStrings(): Set<String>
+  + verifyPassword(String): boolean
+}
+class Incident {
+  + Incident():
+  - category: Category
+  + getCategory(): Category
+  + setCategory(Category): void
+  + toString(): String
+}
+class IncidentDAOImpl {
+  + IncidentDAOImpl(EntityManagerFactory):
+  - emf: EntityManagerFactory
+  + delete(int): void
+  + findByCity(String): Set<Incident>
+  + findByType(Incident): Set<Incident>
+  + findByDate(LocalDate, LocalDate): Set<Incident>
+  + findAll(): List
+  + findByCategory(int): List<Incident>
+  + update(Incident): Incident
+  + findById(int): Incident
+  + create(Incident): Incident
+  + findByPostalCode(String): List<Incident>
+}
+class JwtUserDTO {
+  + JwtUserDTO(String, String):
+  + JwtUserDTO():
+  - email: String
+  - role: String
+  + getEmail(): String
+  + getRole(): String
+  + setEmail(String): void
+  + setRole(String): void
+  + toString(): String
+  + builder(): JwtUserDTOBuilder
+}
+class LoginDTO {
+  + LoginDTO():
+  - email: String
+  - password: String
+}
+class Main {
+  + Main():
+  + main(String[]): void
+}
+class Occurrence {
+  + Occurrence():
+  - description: String
+  - address: Address
+  - nameOfOccurrence: String
+  - endTime: LocalDateTime
+  - id: Integer
+  - startTime: LocalDateTime
+  + getDescription(): String
+  + toString(): String
+  + getId(): Integer
+  + getNameOfOccurrence(): String
+  + getStartTime(): LocalDateTime
+  + getEndTime(): LocalDateTime
+  + setAddress(Address): void
+  + getAddress(): Address
+  + setId(Integer): void
+  + setNameOfOccurrence(String): void
+  + setEndTime(LocalDateTime): void
+  + setDescription(String): void
+  + setStartTime(LocalDateTime): void
+}
+interface OccurrenceDAO<T> << interface >> {
+  + findByCategory(int): List<T>
+  + create(T): T
+  + findAll(): List<T>
+  + delete(int): void
+  + findById(int): T
+  + findByCity(String): Set<T>
+  + findByType(T): Set<T>
+  + findByDate(LocalDate, LocalDate): Set<T>
+  + update(T): T
+  + findByPostalCode(String): List<T>
+}
+enum Role << enumeration >> {
+  + Role():
+  + USER:
+  + EVERYONE:
+  + ADMIN:
+  + values(): Role[]
+  + valueOf(String): Role
+}
+class SecurityController {
+  + SecurityController(EntityManagerFactory):
+  - securityDAO: ISecurityDAO
+  - tokenSecurity: ITokenSecurity
+  + authenticate(Context): void
+  - getToken(Context): String
+  - validateAndGetUserFromToken(Context): UserDTO
+  - createToken(UserDTO): String
+  + login(Context): void
+  - isOpenEndpoint(Set<String>): boolean
+  - verifyToken(String): UserDTO
+  - userHasAllowedRole(UserDTO, Set<String>): boolean
+  + authorize(Context): void
+}
+class SecurityDAO {
+  + SecurityDAO(EntityManagerFactory):
+  - emf: EntityManagerFactory
+  - userDAO: UserDAO
+  + getVerifiedUser(String, String): User
+  + verifyPassword(String): boolean
+}
+class SecurityRoutes {
+  + SecurityRoutes():
+  + register(Javalin, SecurityController): void
+}
+class TokenDTO {
+  + TokenDTO(String, String):
+  + TokenDTO():
+  ~ email: String
+  ~ token: String
+  + getToken(): String
+  + getEmail(): String
+  + setToken(String): void
+  + setEmail(String): void
+  + toString(): String
+  + builder(): TokenDTOBuilder
 }
 
-Class Incident extends Occurrence{
-- IncidentCategory category
+class User {
+  + User():
+  + User(Integer, String, String, String, String, LocalDate, Role, Address):
+  + User(String, String, String, String, LocalDate, Address):
+  - email: String
+  - id: Integer
+  - role: Role
+  - firstName: String
+  - lastName: String
+  - dateOfBirth: LocalDate
+  - password: String
+  - address: Address
+  + getId(): Integer
+  + getFirstName(): String
+  + getLastName(): String
+  + setFirstName(String): void
+  + getEmail(): String
+  + getPassword(): String
+  + builder(): UserBuilder
+  + getDateOfBirth(): LocalDate
+  + getRole(): Role
+  + setEmail(String): void
+  + setDateOfBirth(LocalDate): void
+  + getAddress(): Address
+  + toString(): String
+  + setAddress(Address): void
+  + setRole(Role): void
+  + setId(Integer): void
+  + setLastName(String): void
+  + setPassword(String): void
+  + getRolesAsStrings(): Set<String>
+  + verifyPassword(String): boolean
+}
+class UserController {
+  + UserController(UserService):
+  - userService: UserService
+  + updateUser(Context): void
+  + createUser(Context): void
+  + getUserById(Context): void
+  + getAllUsers(Context): void
+  + deleteUser(Context): void
+}
+interface UserDAO << interface >> {
+  + createUser(User): User
+  + update(User): User
+  + delete(int): boolean
+  + findByEmail(String): User
+  + findAllUsers(): List<User>
+  + findById(int): User
+}
+class UserDAOImpl {
+  + UserDAOImpl(EntityManagerFactory):
+  - emf: EntityManagerFactory
+  + createUser(User): User
+  + delete(int): boolean
+  + findById(int): User
+  + findByEmail(String): User
+  + update(User): User
+  + findAllUsers(): List<User>
+}
+class UserDTO {
+  + UserDTO(String, String, String):
+  + UserDTO():
+  + UserDTO(User):
+  - firstName: String
+  - email: String
+  - lastName: String
+  + getFirstName(): String
+  + getLastName(): String
+  + getEmail(): String
+  + setFirstName(String): void
+  + setLastName(String): void
+  + setEmail(String): void
+}
+class UserRoutes {
+  + UserRoutes():
+  + register(Javalin, UserController): void
+}
+class UserService {
+  + UserService(UserDAOImpl, CityDAO, AddressDAO, GeocodingService):
+  - userDAO: UserDAOImpl
+  - addressDAO: AddressDAO
+  - cityDAO: CityDAO
+  - geocodingService: GeocodingService
+  + getAllUsers(): List<UserDTO>
+  + delete(int): void
+  + createUser(CreateUserDTO): User
+  + findUserById(int): User
+  + updateUser(int, CreateUserDTO): User
+}
+class Utils {
+  + Utils():
+  + getPropertyValue(String, String): String
+}
+class VerifyUserDTO {
+  + VerifyUserDTO(String, String):
+  + VerifyUserDTO():
+  - email: String
+  - password: String
+  + getEmail(): String
+  + getPassword(): String
+  + setEmail(String): void
+  + setPassword(String): void
 }
 
-Class UserDAO{
-- public User createUser()
-- public User updateUser(User user)
-- public User findById(ind id)
+Event                    -[#000082,plain]-^  Occurrence
+Incident                 -[#000082,plain]-^  Occurrence
+EventDAOImpl             -[#008200,dashed]-^  OccurrenceDAO
+IncidentDAOImpl          -[#008200,dashed]-^  OccurrenceDAO
+SecurityController       -[#008200,dashed]-^  ISecurityController
+SecurityDAO              -[#008200,dashed]-^  ISecurityDAO
+User                     -[#008200,dashed]-^  ISecurityUser
+UserDAOImpl              -[#008200,dashed]-^  UserDAO
+OccurrenceDAO            -[#595959,dashed]->  Occurrence
 
-}
 
-interface OccurrenceDAO<T extends Occurence>{
-- public void create(T object)
-- public T findById(int id)
-- public List<T> findAll()
-- public void update(T object)
-- public void delete( int id)
+Address     -->  City
+User        -->  Address
+User        -->  Role
+Occurrence  -->  Address
+Event       -->  Category
+Incident    -->  Category
 
-}
 
-Class EventDAO implements OccurrenceDAO<Event>{
-- public Event create(Event event)
-- public Event findById(int id)
-- public List<Event> findAll()
-- public void update (Event event)
-- public void delete( int id)
-}
+UserController      -->  UserService
+CategoryController  -->  CategoryService
+EventController     -->  EventService
+GeocodingController -->  GeocodingService
 
-Class IncidentDAO implements OccurrenceDAO<Incident>{
-- public Incident create(Incident incident)
-- public Incident findById(int id)
-- public List<Incident> findAll()
-- public void update (Incident incident)
-- public void delete( int id)
-}
+UserService      -->  UserDAOImpl
+UserService      -->  CityDAO
+UserService      -->  AddressDAO
+UserService      -->  GeocodingService
+EventService     -->  EventDAOImpl
+EventService     -->  CityDAO
+EventService     -->  AddressDAO
+EventService     -->  CategoryDAO
+EventService     -->  GeocodingService
+CategoryService  -->  CategoryDAO
+
+SecurityController  -->  ISecurityDAO
+SecurityDAO         -->  UserDAO
+
+
+CreateUserDTO   -->  CreateAddressDTO
+CreateEventDTO  -->  CreateAddressDTO
+EventDTO        -->  AddressDTO
+EventDTO        -->  CategoryDTO
+
+AddressDTO   ..>  Address   :f
+CategoryDTO  ..>  Category
+EventDTO     ..>  Event
+UserDTO      ..>  User
+
+
+UserService      ..>  CreateUserDTO
+UserService      ..>  UserDTO
+EventService     ..>  CreateEventDTO
+CategoryService  ..>  CreateCategoryDTO
+GeocodingService ..>  CoordinatesDTO
+GeocodingService ..>  AddressDTO
+GeocodingController ..> CoordinatesDTO
+GeocodingController ..> AddressDTO
+SecurityController  ..>  VerifyUserDTO
+SecurityController  ..>  TokenDTO
+SecurityController  ..>  UserDTO
+SecurityController  ..>  User
+ISecurityDAO        ..>  User
+UserDAO             ..>  User
+
+
+UserRoutes      ..>  UserController
+EventRoutes     ..>  EventController
+CategoryRoutes  ..>  CategoryController
+SecurityRoutes  ..>  SecurityController
+
+
+EntityRegistry  ..>  User
+EntityRegistry  ..>  Address
+EntityRegistry  ..>  City
+EntityRegistry  ..>  Category
+EntityRegistry  ..>  Event
+EntityRegistry  ..>  Incident
+Main            ..>  UserRoutes
+Main            ..>  EventRoutes
+Main            ..>  CategoryRoutes
+Main            ..>  SecurityRoutes
+GeocodingService  ..>  Utils
+SecurityController ..> Utils
 @enduml

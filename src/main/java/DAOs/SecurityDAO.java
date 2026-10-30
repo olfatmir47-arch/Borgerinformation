@@ -32,19 +32,4 @@ public class SecurityDAO implements ISecurityDAO {
     public boolean verifyPassword(String passWord) {
        return true;
     }
-
-    @Override
-    public User createUser(User user) {
-        return null;
-    }
-
-    @Override
-    public Role createRole(String role) {
-        return null;
-    }
-
-    @Override
-    public User addUserRole(String username, String role) {
-        return null;
-    }
 }

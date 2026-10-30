@@ -1,6 +1,6 @@
 package Controller;
 
-import Endpoints.AppConfig;
+import app.config.AppConfig;
 import app.config.HibernateTestConfig;
 import app.testUtils.UserTestPopulator;
 import entities.User;
@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import io.restassured.RestAssured;
 
 
-import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;

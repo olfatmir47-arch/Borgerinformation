@@ -1,0 +1,69 @@
+@startuml
+
+skinparam linetype ortho
+
+entity "users" as users {
+  * id : integer <<PK>>
+  --
+  * first_name : varchar
+  * last_name : varchar
+  * date_of_birth : date
+  * email : varchar <<unique>>
+  * password : varchar (BCrypt-hash)
+  * role : varchar (USER, EVERYONE, ADMIN)
+  * address_id : integer <<FK>>
+}
+
+entity "address" as address {
+  * id : integer <<PK>>
+  --
+  * street_name : varchar
+  * number : varchar
+  floor : varchar
+  * lat : double
+  * lng : double
+  * city_id : integer <<FK>>
+}
+
+entity "city" as city {
+  * id : integer <<PK>>
+  --
+  * postal_code : varchar
+  * city_name : varchar
+}
+
+entity "category" as category {
+  * id : integer <<PK>>
+  --
+  * name : varchar
+}
+
+entity "event" as event {
+  * id : integer <<PK>>
+  --
+  * name_of_occurrence : varchar
+  description : varchar
+  * start_time : timestamp
+  * end_time : timestamp
+  * address_id : integer <<FK>>
+  * category_id : integer <<FK>>
+}
+
+entity "incident" as incident {
+  * id : integer <<PK>>
+  --
+  * name_of_occurrence : varchar
+  description : varchar
+  * start_time : timestamp
+  * end_time : timestamp
+  * address_id : integer <<FK>>
+  * category_id : integer <<FK>>
+}
+
+city      ||--o{ address
+address   ||--o{ users
+address   ||--o{ event
+address   ||--o{ incident
+category  ||--o{ event
+category  ||--o{ incident
+@enduml

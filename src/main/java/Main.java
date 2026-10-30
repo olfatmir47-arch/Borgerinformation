@@ -1,5 +1,5 @@
 
-import Endpoints.AppConfig;
+import app.config.AppConfig;
 
 import app.config.HibernateConfig;
 import io.javalin.Javalin;

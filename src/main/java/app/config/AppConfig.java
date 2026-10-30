@@ -1,12 +1,15 @@
-package Endpoints;
+package app.config;
 
 import Controller.*;
 import DAOs.*;
+import Endpoints.CategoryRoutes;
+import Endpoints.EventRoutes;
+import Endpoints.SecurityRoutes;
+import Endpoints.UserRoutes;
 import Service.CategoryService;
 import Service.EventService;
 import Service.GeocodingService;
 import Service.UserService;
-import app.config.HibernateConfig;
 import io.javalin.Javalin;
 import jakarta.persistence.EntityManagerFactory;
 

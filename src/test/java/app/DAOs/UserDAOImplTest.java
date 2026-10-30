@@ -101,8 +101,8 @@ class UserDAOImplTest {
 
         List<User> all = userDAO.findAllUsers();
 
-        assertThat(all, hasSize(3));
-        assertThat(all.stream().map(User::getId).toList(), containsInAnyOrder(seeded.get("user1").getId(), seeded.get("user2").getId(), seeded.get("user3").getId()));
+        assertThat(all, hasSize(4));
+        assertThat(all.stream().map(User::getId).toList(), containsInAnyOrder(seeded.get("user1").getId(), seeded.get("user2").getId(), seeded.get("user3").getId(), seeded.get("admin").getId()));
 
     }
 

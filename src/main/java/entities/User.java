@@ -77,13 +77,4 @@ public class User implements ISecurityUser {
         return BCrypt.checkpw(pw, this.password);
     }
 
-    @Override
-    public void addRole(Role role) {
-
-    }
-
-    @Override
-    public void removeRole(String role) {
-
-    }
 }

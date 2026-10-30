@@ -13,10 +13,18 @@ Content-Type: application/
 {
 "name": "Musik"
 }
+###
+POST http://localhost:7070/auth/login
+Content-Type: application/json
 
+{
+  "email": "SørmeS@gmail.com",
+  "password": "123456ss"
+}
 ###
 POST http://localhost:7070/events
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJCb3JnZXJJbmZvcm1hdGlvbiIsInN1YiI6IlPDuHJtZVNAZ21haWwuY29tIiwiZXhwIjoxNzkzMzI2ODI1LCJyb2xlcyI6IlVTRVIiLCJ1c2VybmFtZSI6IlPDuHJtZVNAZ21haWwuY29tIn0.c5cUhesyAKfJTOlbGslgzEiloF6G1XWfRzDn1A7LEq4
 
 {
   "name": "Fodboldturnering",
