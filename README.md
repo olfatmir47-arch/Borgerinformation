@@ -17,6 +17,7 @@ https://github.com/olfatmir47-arch/Borgerinformation.git
 
 Portfolio website: 
 https://olfatmir47-arch.github.io/portfolio/
+https://olfatmir47-arch.github.io/portfolio/reflections/
   
 ---
 
